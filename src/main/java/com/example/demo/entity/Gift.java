@@ -1,7 +1,10 @@
 package com.example.demo.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,25 +16,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// 엔티티: 데이터베이스의 테이블 구조를 정의하는 클래스
-
-@Entity // 엔티티 클래스임을 명시
-@Table(name = "tbl_memo") // 테이블 이름
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "tbl_gift")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Memo {
-	// Primary key
+public class Gift {
 	@Id
-	// auto increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int no;
 	
-	// 일반컬럼
-	// 컬럼의 크기와 제약사항
-	@Column(length = 200, nullable = true)
-	String text;
+	@Column(length = 20, nullable = false)
+	String name;
+	
+	@Column(nullable = false)
+	int price;
+	
+	@Column(length = 20, nullable = false)
+	String type;
 }

@@ -13,25 +13,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// 엔티티: 데이터베이스의 테이블 구조를 정의하는 클래스
-
 @Entity // 엔티티 클래스임을 명시
-@Table(name = "tbl_memo") // 테이블 이름
+@Table(name = "tbl_book") // 테이블 이름
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Memo {
-	// Primary key
+public class Book {
 	@Id
-	// auto increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int no;
+	int book_no;
 	
-	// 일반컬럼
-	// 컬럼의 크기와 제약사항
-	@Column(length = 200, nullable = true)
-	String text;
+	@Column(nullable = false)
+	Integer price;
+	
+	@Column(length = 100, nullable = false)
+	String publisher;
+	
+	@Column(length = 30, nullable = false)
+	String title;
 }
